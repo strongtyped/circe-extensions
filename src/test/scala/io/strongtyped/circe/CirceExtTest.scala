@@ -18,7 +18,7 @@ class CirceExtTest extends FunSuite with Matchers {
     case class Baz(value: Int) extends Foo
     case class Qux(value: Boolean) extends Foo
     object Foo {
-      implicit val codec: Codec[Foo] = CirceExt.withTypeHint("_type").codec[Foo]
+      implicit val codec: Codec[Foo] = CirceExt.withTypeHint.codec[Foo]
     }
 
     val jsonStr =

@@ -21,6 +21,7 @@ object CirceExt {
       def apply(c: HCursor): Result[A] = dec(c)
     }
 
+  def withTypeHint = DerivationWithTypeHint("_type")
   def withTypeHint(hint: String) = DerivationWithTypeHint(hint)
 
   case class DerivationWithTypeHint(hint: String) {
