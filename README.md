@@ -29,11 +29,12 @@ Circe default output:
 }
 ```
 
-The custom type hint extension allows you to choose include an extra field holding the type hint.
+The type hint extension allows you to choose include an extra field holding the type hint.
+
 ```scala
 object Foo {
   import io.strongtyped.circe.CirceExt
-  implicit val codec: Codec[Foo] = CirceExt.withTypeHint("_type").codec[Foo]
+  implicit val codec: Codec[Foo] = CirceExt.withTypeHint.codec[Foo]
 }
 val foo: Foo = Bar("abc")
 println(foo.asJson)
@@ -43,6 +44,24 @@ output:
 ```json
 {
  "_type": "Bar",
+ "value": "abc"
+}
+```
+
+Or using a custom name for the type hint.
+```scala
+object Foo {
+  import io.strongtyped.circe.CirceExt
+  implicit val codec: Codec[Foo] = CirceExt.withTypeHint("$type").codec[Foo]
+}
+val foo: Foo = Bar("abc")
+println(foo.asJson)
+```
+output: 
+
+```json
+{
+ "$type": "Bar",
  "value": "abc"
 }
 ```
