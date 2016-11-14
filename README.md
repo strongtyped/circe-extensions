@@ -29,7 +29,7 @@ Circe default output:
 }
 ```
 
-The type hint extension allows you to choose include an extra field holding the type hint.
+The type hint extension moves the type information a field named "_type" and places all other fields on the same level. 
 
 ```scala
 object Foo {
