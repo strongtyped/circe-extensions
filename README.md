@@ -8,7 +8,7 @@ It contains now only an example for configuration and the `type Codec[A] = Encod
 
 ## type Codec[A] = Encoder[A] with Decoder[A]
 
-CirceExt can be used as a example to for using circe-extras.
+CirceExt can be used as an example own how to using circe-extras for custom type discriminators and sealed trait enumerations.
 
 It provides a `deriveCodec` and `deriveEnumCodec` utility methods to generate Encoder[A] and Decoder[A] altogether
 
