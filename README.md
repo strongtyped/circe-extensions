@@ -66,7 +66,7 @@ output:
 }
 ```
 
-## Enumeration from sealed tratis
+## Enumeration from sealed traits
 
 ```scala
 
