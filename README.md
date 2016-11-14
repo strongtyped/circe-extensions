@@ -29,7 +29,7 @@ Circe default output:
 }
 ```
 
-The type hint extension moves the type information a field named "_type" and places all other fields on the same level. 
+The type hint extension moves the type information to field named "_type" and places all other fields at the same level. 
 
 ```scala
 object Foo {
