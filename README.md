@@ -4,7 +4,7 @@ Some extensions for Circe
 
 ## type Codec[A] = Encoder[A] with Decoder[A]
 
-Utility method to generate Encoder[A] and Decoder[A] together
+Utility method to generate Encoder[A] and Decoder[A] altogether
 ```scala
 import io.strongtyped.circe.CirceExt
 import io.strongtyped.circe.CirceExt.Codec
