@@ -1,11 +1,10 @@
 package io.strongtyped.circe
 
 import cats.syntax.either._
-import io.circe.generic.semiauto._
-import io.circe.{Decoder, Encoder, Json, Printer}
 import io.circe.parser._
 import io.circe.syntax._
-import io.strongtyped.circe.CirceExt.Codec
+import io.circe.{Encoder, Json, Printer}
+import io.strongtyped.circe.CirceExt.{Codec, _}
 import org.scalatest.{FunSuite, Matchers}
 
 class CirceExtTest extends FunSuite with Matchers {
@@ -18,7 +17,7 @@ class CirceExtTest extends FunSuite with Matchers {
     case class Baz(value: Int) extends Foo
     case class Qux(value: Boolean) extends Foo
     object Foo {
-      implicit val codec: Codec[Foo] = CirceExt.withTypeHint.codec[Foo]
+      implicit val codec: Codec[Foo] = deriveCodec[Foo]
     }
 
     val jsonStr =
@@ -51,11 +50,11 @@ class CirceExtTest extends FunSuite with Matchers {
     case object Updated extends Status
     case object Deleted extends Status
     object Status {
-      implicit val codec: Codec[Status] = CirceExt.enum.codec[Status]
+      implicit val codec: Codec[Status] = deriveEnumCodec[Status]
     }
 
     case class Foo(value: String, status: Status)
-    implicit val codec: Codec[Foo] = CirceExt.codec[Foo]
+    implicit val codec: Codec[Foo] = deriveCodec[Foo]
 
     val jsonStr =
       """
@@ -82,7 +81,7 @@ class CirceExtTest extends FunSuite with Matchers {
 
   test("using it with case classes should also work") {
     case class Foo(value: String)
-    implicit val codec: Codec[Foo] = CirceExt.withTypeHint("_type").codec[Foo]
+    implicit val codec: Codec[Foo] = deriveCodec[Foo]
     val jsonStr =
       """
         |{
@@ -113,7 +112,7 @@ class CirceExtTest extends FunSuite with Matchers {
     case class Bar(value: String) extends Qux
 
     object Foo {
-      implicit val codec: Codec[Foo] = CirceExt.withTypeHint("_type").codec[Foo]
+      implicit val codec: Codec[Foo] = deriveCodec[Foo]
     }
 
     val jsonStr =
@@ -139,5 +138,3 @@ class CirceExtTest extends FunSuite with Matchers {
     }
   }
 }
-
-
